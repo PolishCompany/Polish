@@ -21,6 +21,32 @@
             --warning: #ff9100;
             --error: #ff5252;
         }
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-gray); /* Match your dark background */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    border-radius: 10px;
+    border: 2px solid var(--dark-gray);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-light);
+}
+
+/* For Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--dark-gray);
+}
 
         * {
             margin: 0;
@@ -525,7 +551,7 @@
 
         /* Testimonials */
         .testimonials {
-            padding: 40px 0;
+            padding: 20px 0;
             background-color: var(--dark);
         }
 
@@ -533,7 +559,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 10px;
         }
 
         .testimonial-card {
@@ -553,7 +579,7 @@
         .testimonial-content {
             font-style: italic;
             color: var(--light-gray);
-            margin-bottom: 20px;
+            margin-bottom: 0px;
             position: relative;
         }
 
@@ -735,7 +761,7 @@
 
         /* About Section */
         .about {
-            padding: 100px 0;
+            padding: 10px 0;
             background-color: var(--dark);
         }
 
@@ -1271,9 +1297,9 @@
     <div class="container testimonials">
         <div class="testimonial-container">
             <h2>Client Testimonial</h2>
-            <p class="testimonial-text">"This animation team exceeded my expectations! The quality of work, creativity, and professionalism were outstanding. Highly recommend!"</p>
+            <p class="testimonial-text">"The people at ToonLance, are some of the nicest and coolest people I have ever worked with. They focused on quality over quantity even at a cheap price when it comes to animation. I highly recommend them if you ever need a freelancing animation company to work with."</p>
             <div class="client-info">
-                <p class="client-name">John Doe, CEO of Creative Studios</p>
+                <p class="client-name">Mike C. (Hoopla Toons)</p>
             </div>
         </div>
     </div>
@@ -1348,7 +1374,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 ToonLance. All rights reserved.</p>
+                <p>&copy; 2025 ToonLance. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1358,6 +1384,7 @@
     
     <!-- JavaScript for Navbar Functionality -->
     <script>
+        document.documentElement.style.scrollBehavior = 'smooth';
        document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Toggle
     const hamburger = document.querySelector('.hamburger');
