@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polish - Premium Freelance Talent Platform</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #6c5ce7;
+            --primary-dark: #5649c0;
+            --secondary: #00cec9;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #00b894;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f6fa;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            font-weight: 500;
+            color: var(--dark);
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--dark);
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .hero-text h1 span {
+            color: var(--primary);
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .hero-image {
+            flex: 1;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* How It Works Section */
+        .how-it-works {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+        
+        .step h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* Freelancers Showcase */
+        .freelancers {
+            padding: 80px 0;
+            background-color: #f5f6fa;
+        }
+        
+        .freelancer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .freelancer-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .freelancer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .freelancer-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .freelancer-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .freelancer-card:hover .freelancer-image img {
+            transform: scale(1.1);
+        }
+        
+        .freelancer-info {
+            padding: 20px;
+        }
+        
+        .freelancer-info h3 {
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .freelancer-info p.specialty {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .freelancer-info p.rate {
+            color: var(--success);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .skill-tag {
+            background-color: #f0f2f5;
+            color: #555;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .cta .btn {
+            background-color: white;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .cta .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #aaa;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text, .hero-image {
+                flex: none;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+        }
+        
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 40px 0;
+                gap: 30px;
+                transition: left 0.3s ease;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links a {
+                font-size: 18px;
+            }
+            
+            /* Removed the auth-buttons display:none rule */
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Added this new rule to make auth buttons full width in mobile */
+            .auth-buttons {
+                width: 100%;
+                flex-direction: column;
+                padding: 0 20px;
+            }
+            
+            .auth-buttons .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Polish</div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="nav-links">
+                    <a href="#home" class="active">Home</a>
+                    <a href="#freelancers">Freelancers</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#about">About</a>
+                    <div class="auth-buttons">
+                        <a href="#" class="btn btn-outline">Login</a>
+                        <a href="#" class="btn btn-primary">Sign Up</a>
+                    </div>
+                </div>
+                <!-- Removed the duplicate desktop-auth buttons -->
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Find the Perfect <span>Freelancer</span> for Your Project</h1>
+                    <p>Connect with top professionals for all your creative and technical needs. From animation to web development, find the right talent on Polish.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">Hire Talent</a>
+                        <a href="#" class="btn btn-outline">Apply as Freelancer</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Creative Work">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How Polish Works</h2>
+                <p>Our platform makes it simple to connect with professionals or find work as a freelancer.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">1</div>
+                    <h3>Post Your Project</h3>
+                    <p>Describe your needs and set your budget. It only takes a few minutes.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">2</div>
+                    <h3>Get Matched</h3>
+                    <p>Our system will match you with qualified freelancers based on your requirements.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">3</div>
+                    <h3>Collaborate Securely</h3>
+                    <p>Work with your freelancer through our platform with secure payments and messaging.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Freelancers Showcase -->
+    <section class="freelancers" id="freelancers">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Freelancers</h2>
+                <p>Browse through our top-rated professionals with diverse skills and specialties.</p>
+            </div>
+            <div class="freelancer-grid">
+                <!-- Freelancer 1 -->
+                <div class="freelancer-card">
+                    <div class="freelancer-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Freelancer 1">
+                    </div>
+                    <div class="freelancer-info">
+                        <h3>Sarah Johnson</h3>
+                        <p class="specialty">2D Character Animation</p>
+                        <div class="skills">
+                            <span class="skill-tag">After Effects</span>
+                            <span class="skill-tag">Illustrator</span>
+                            <span class="skill-tag">Character Design</span>
+                        </div>
+                        <p class="rate">$50/hour</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%;">View Portfolio</a>
+                    </div>
+                </div>
+                
+                <!-- Freelancer 2 -->
+                <div class="freelancer-card">
+                    <div class="freelancer-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Freelancer 2">
+                    </div>
+                    <div class="freelancer-info">
+                        <h3>Michael Chen</h3>
+                        <p class="specialty">3D Motion Graphics</p>
+                        <div class="skills">
+                            <span class="skill-tag">Blender</span>
+                            <span class="skill-tag">Cinema 4D</span>
+                            <span class="skill-tag">Maya</span>
+                        </div>
+                        <p class="rate">$75/hour</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%;">View Portfolio</a>
+                    </div>
+                </div>
+                
+                <!-- Freelancer 3 -->
+                <div class="freelancer-card">
+                    <div class="freelancer-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Freelancer 3">
+                    </div>
+                    <div class="freelancer-info">
+                        <h3>David Rodriguez</h3>
+                        <p class="specialty">Web Developer</p>
+                        <div class="skills">
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">MongoDB</span>
+                        </div>
+                        <p class="rate">$65/hour</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%;">View Portfolio</a>
+                    </div>
+                </div>
+                
+                <!-- Freelancer 4 -->
+                <div class="freelancer-card">
+                    <div class="freelancer-image">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Freelancer 4">
+                    </div>
+                    <div class="freelancer-info">
+                        <h3>Emma Williams</h3>
+                        <p class="specialty">UI/UX Designer</p>
+                        <div class="skills">
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Sketch</span>
+                            <span class="skill-tag">Adobe XD</span>
+                        </div>
+                        <p class="rate">$60/hour</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%;">View Portfolio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="pricing">
+        <div class="container">
+            <h2>Ready to Start Your Project?</h2>
+            <p>Join thousands of clients who have found the perfect freelancer for their needs.</p>
+            <a href="#" class="btn">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Polish</h2>
+                <p>Our mission is to bridge the gap between creative talent and businesses needing professional services.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-users"></i></div>
+                    <h3>500+ Freelancers</h3>
+                    <p>We've curated a network of top professionals from around the world.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-project-diagram"></i></div>
+                    <h3>2000+ Projects</h3>
+                    <p>Successful collaborations completed through our platform.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Global Reach</h3>
+                    <p>Serving clients and freelancers from over 50 countries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Polish</h3>
+                    <p>Connecting clients with top freelancers worldwide for seamless creative collaboration.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>For Clients</h3>
+                    <ul>
+                        <li><a href="#">How to Hire</a></li>
+                        <li><a href="#">Freelancer Directory</a></li>
+                        <li><a href="#">Pricing Guide</a></li>
+                        <li><a href="#">Client Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>For Freelancers</h3>
+                    <ul>
+                        <li><a href="#">How to Get Hired</a></li>
+                        <li><a href="#">Create Portfolio</a></li>
+                        <li><a href="#">Freelancer Resources</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Polish. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- JavaScript for Navbar Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Active link highlighting based on scroll position
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.nav-links a');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${current}`) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            // Initialize first link as active
+            if (window.location.hash) {
+                const initialActive = document.querySelector(`.nav-links a[href="${window.location.hash}"]`);
+                if (initialActive) {
+                    document.querySelector('.nav-links a.active')?.classList.remove('active');
+                    initialActive.classList.add('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
