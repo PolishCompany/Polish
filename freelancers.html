@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Freelancers | Toonlance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7c4dff;
+            --primary-dark: #5e35b1;
+            --secondary: #00e5ff;
+            --accent: #ff4081;
+            --dark: #121212;
+            --dark-gray: #1e1e1e;
+            --medium-gray: #2d2d2d;
+            --light-gray: #b0b0b0;
+            --light: #ffffff;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            font-family: 'Inter', -apple-system, sans-serif;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .search-box {
+            display: flex;
+        }
+        
+        #searchInput {
+            flex: 1;
+            padding: 12px;
+            background: var(--medium-gray);
+            border: none;
+            border-radius: 6px 0 0 6px;
+            color: white;
+            font-size: 16px;
+        }
+        
+        #searchButton {
+            padding: 12px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+        }
+        
+        .freelancers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .freelancer-card {
+            background: var(--dark-gray);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+        
+        .freelancer-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .freelancer-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .freelancer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+        
+        .freelancer-info h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .freelancer-info p {
+            margin: 5px 0 0;
+            color: var(--light-gray);
+        }
+        
+        .freelancer-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .skill-tag {
+            background: var(--medium-gray);
+            color: var(--light);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--light-gray);
+            grid-column: 1 / -1;
+        }
+        
+        .highlight {
+            background-color: rgba(124, 77, 255, 0.3);
+            padding: 2px;
+            border-radius: 3px;
+        }
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-pencil-ruler"></i>
+                    <span>ToonLance</span>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html#home" >Home</a>
+                    <a href="index.html#how-it-works">How It Works</a>
+                    <a href="index.html#testimonials">Testimonials</a>
+                    <a href="index.html#about">About</a>
+                    <a href="freelancers.html" class="active">Freelancers</a>
+                    <!-- <a href="">Projects</a>
+                    <a href="">Contact</a> -->
+                </div>
+            </nav>
+        </div>
+    </header>
+    <h1 class="page-title">Available Freelancers</h1>
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search by name, skills, or description">
+            <button id="searchButton">Search</button>
+        </div>
+    </div>
+    
+    <div class="freelancers-grid" id="freelancersGrid"></div>
+
+    <script>
+                document.documentElement.style.scrollBehavior = 'smooth';
+       document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Active link highlighting based on scroll position
+    const sections = document.querySelectorAll('section[id]'); // Only select sections with IDs
+    const navItems = document.querySelectorAll('.nav-links a[href^="#"]'); // Only select nav links with href starting with #
+    
+    window.addEventListener('scroll', function() {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            const sectionId = section.getAttribute('id');
+            
+            // Check if section is in view
+            if (pageYOffset >= sectionTop - 100 && 
+                pageYOffset < sectionTop + sectionHeight - 100) {
+                current = sectionId;
+            }
+        });
+        
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            const href = item.getAttribute('href');
+            if (href === `#${current}`) {
+                item.classList.add('active');
+            }
+        });
+    });
+    
+    // Initialize first link as active
+    if (window.location.hash) {
+        const initialActive = document.querySelector(`.nav-links a[href="${window.location.hash}"]`);
+        if (initialActive) {
+            document.querySelector('.nav-links a.active')?.classList.remove('active');
+            initialActive.classList.add('active');
+        }
+    }
+});
+        // Sample freelancer data
+        const freelancers = [
+            {
+                id: 1,
+                name: "Raj",
+                title: "Animator",
+                skills: ["Clip Studio Paint", "Adobe Animate CC", "After Effects", "Premiere Pro"],
+                description: "Experinced in Animation,Storyboarding and Composition",
+                avatar: "logo.jpg",
+                // rate: "$10/hr"
+            },
+            {
+                id: 2,
+                name: "Zeder",
+                title: "Animator",
+                skills: ["Adobe Animate CC", "Photoshop", "Clip Studio Pain", "Krita"],
+                description: "Experienced in Storyboarding,Animation and Character Design",
+                avatar: "zeder-logo.png",
+                // rate: "$10/hr"
+            },
+            // {
+            //     id: 3,
+            //     name: "Priya Patel",
+            //     title: "Content Writer",
+            //     skills: ["SEO Writing", "Blog Posts", "Whitepapers", "Copywriting"],
+            //     description: "SEO content specialist for tech and marketing.",
+            //     avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+            //     rate: "$45/hr"
+            // }
+        ];
+
+        // Display all freelancers initially
+        function displayFreelancers(freelancersToShow) {
+            const grid = document.getElementById('freelancersGrid');
+            
+            if (freelancersToShow.length === 0) {
+                grid.innerHTML = '<div class="no-results">No freelancers found matching your search</div>';
+                return;
+            }
+            
+            grid.innerHTML = freelancersToShow.map(freelancer => `
+                <div class="freelancer-card">
+                    <div class="freelancer-header">
+                        <img src="${freelancer.avatar}" alt="${freelancer.name}" class="freelancer-avatar">
+                        <div class="freelancer-info">
+                            <h3>${freelancer.name}</h3>
+                            <p>${freelancer.title}</p>
+                        </div>
+                    </div>
+                    <p>${freelancer.description}</p>
+                    <div class="freelancer-skills">
+                        ${freelancer.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+        // • ${freelancer.rate}
+        // Simple fuzzy search function
+        function searchFreelancers(searchTerm) {
+            if (!searchTerm) {
+                return freelancers; // Return all if empty search
+            }
+            
+            searchTerm = searchTerm.toLowerCase();
+            
+            return freelancers.filter(freelancer => {
+                // Combine all searchable text
+                const searchText = `
+                    ${freelancer.name.toLowerCase()}
+                    ${freelancer.title.toLowerCase()}
+                    ${freelancer.skills.join(' ').toLowerCase()}
+                    ${freelancer.description.toLowerCase()}
+                `;
+                
+                // Check for approximate matches
+                return (
+                    searchText.includes(searchTerm) || // Exact match
+                    freelancer.name.toLowerCase().includes(searchTerm) || // Name match
+                    freelancer.skills.some(skill => 
+                        skill.toLowerCase().includes(searchTerm) // Skill match
+                    ) ||
+                    searchTerm.split(' ').some(word => // Partial word match
+                        searchText.includes(word)
+                    )
+                );
+            });
+        }
+
+        // Handle search button click
+        document.getElementById('searchButton').addEventListener('click', () => {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            const results = searchFreelancers(searchTerm);
+            displayFreelancers(results);
+        });
+
+        // Handle Enter key press
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const searchTerm = document.getElementById('searchInput').value.trim();
+                const results = searchFreelancers(searchTerm);
+                displayFreelancers(results);
+            }
+        });
+
+        // Initial display
+        displayFreelancers(freelancers);
+    </script>
+</body>
+</html>
