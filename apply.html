@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply as Freelancer | ToonLance</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reused dark theme styles from your original design */
+        :root {
+            --primary: #7c4dff;
+            --primary-dark: #5e35b1;
+            --secondary: #00e5ff;
+            --dark: #121212;
+            --dark-gray: #1e1e1e;
+            --light: #ffffff;
+            --light-gray: #b0b0b0;
+            --error: #ff5252;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: var(--dark-gray);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        h1 {
+            color: var(--secondary);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--light);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            background: var(--dark);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            color: var(--light);
+        }
+        
+        textarea {
+            min-height: 120px;
+        }
+        
+        button[type="submit"] {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: block;
+            margin: 30px auto 0;
+        }
+        
+        button[type="submit"]:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .file-upload {
+            border: 2px dashed rgba(255,255,255,0.2);
+            padding: 20px;
+            text-align: center;
+            border-radius: 6px;
+        }
+        
+        .required:after {
+            content: " *";
+            color: var(--error);
+        }
+        .apply-intro {
+  background: rgba(124, 77, 255, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  border-left: 3px solid var(--secondary);
+}
+
+.apply-intro h2 {
+  color: var(--secondary);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.apply-intro p {
+  color: var(--light-gray);
+  line-height: 1.6;
+}
+    </style>
+</head>
+<body>
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="logo">
+                        <i class="fas fa-pencil-ruler"></i>
+                        <span>ToonLance</span>
+                    </div>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="nav-links">
+                        <a href="index.html">Home</a>
+                        <a href="index.html#how-it-works">How It Works</a>
+                        <a href="index.html#testimonials">Testimonials</a>
+                        <a href="index.html#about">About</a>
+                        <a href="freelancers.html">Freelancers</a>
+                        <!-- <a href="">Projects</a>
+                        <a href="">Contact</a> -->
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- Add this above your form -->
+<div class="apply-intro">
+    <h2><i class="fas fa-pencil-alt"></i>IMPORTANT</h2>
+    <p>We Talk To You On Discord Just Fill Form and DM me on Discord My ID : strangelies</p>
+  </div>
+    <div class="form-container">    
+        <h1><i class="fas fa-user-plus"></i> Freelancer Application</h1>
+        
+        <form action="https://formspree.io/f/myzenzjg" method="POST" enctype="multipart/form-data">
+            <div class="form-grid">
+                <!-- Personal Info -->
+                <div class="form-group">
+                    <label class="required">First Name</label>
+                    <input type="text" name="first_name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Last Name</label>
+                    <input type="text" name="last_name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Email</label>
+                    <input type="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" name="phone">
+                </div>
+                
+                <!-- Professional Info -->
+                <div class="form-group full-width">
+                    <label class="required">Professional Headline</label>
+                    <input type="text" name="headline" placeholder="2D Animator & Motion Designer" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Primary Skill</label>
+                    <select name="primary_skill" required>
+                        <option value="">Select</option>
+                        <option>2D Animation</option>
+                        <option>Motion Graphics</option>
+                        <option>Character Design</option>
+                        <option>Storyboarding</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Experience Level</label>
+                    <select name="experience" required>
+                        <option value="">Select</option>
+                        <option>0-1 years</option>
+                        <option>1-3 years</option>
+                        <option>3-5 years</option>
+                        <option>5+ years</option>
+                    </select>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="required">Portfolio Link</label>
+                    <input type="url" name="portfolio" placeholder="https://yourportfolio.com" required>
+                </div>
+                <div class="form-group full-width">
+                    <label class="required">Discord ID</label>
+                    <input type="text" name="DiscordID"  required>
+                </div>
+                <div class="form-group full-width">
+                    <label class="required">About You</label>
+                    <textarea name="bio" required></textarea>
+                </div>
+                
+                <!-- File Upload
+                <div class="form-group full-width">
+                    <label class="required">Work Samples (Max 5MB)</label>
+                    <div class="file-upload">
+                        <input type="file" name="samples" required>
+                        <p><i class="fas fa-cloud-upload-alt"></i> Upload your best work</p>
+                    </div>
+                </div> -->
+                
+                <!-- Hidden Fields for Formspree -->
+                <input type="hidden" name="_subject" value="New Freelancer Application">
+                <input type="hidden" name="_replyto">
+                <input type="text" name="_gotcha" style="display:none">
+            </div>
+            
+            <button type="submit">
+                <i class="fas fa-paper-plane"></i> Submit Application
+            </button>
+        </form>
+    </div>
+    <script>
+                document.documentElement.style.scrollBehavior = 'smooth';
+       document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Active link highlighting based on scroll position
+    const sections = document.querySelectorAll('section[id]'); // Only select sections with IDs
+    const navItems = document.querySelectorAll('.nav-links a[href^="#"]'); // Only select nav links with href starting with #
+    
+    window.addEventListener('scroll', function() {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            const sectionId = section.getAttribute('id');
+            
+            // Check if section is in view
+            if (pageYOffset >= sectionTop - 100 && 
+                pageYOffset < sectionTop + sectionHeight - 100) {
+                current = sectionId;
+            }
+        });
+        
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            const href = item.getAttribute('href');
+            if (href === `#${current}`) {
+                item.classList.add('active');
+            }
+        });
+    });
+    
+    // Initialize first link as active
+    if (window.location.hash) {
+        const initialActive = document.querySelector(`.nav-links a[href="${window.location.hash}"]`);
+        if (initialActive) {
+            document.querySelector('.nav-links a.active')?.classList.remove('active');
+            initialActive.classList.add('active');
+        }
+    }
+});
+    </script>
+</body>
+</html>
