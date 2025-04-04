@@ -132,6 +132,27 @@
             background-clip: text;
             color: transparent;
         }
+        
+        .freelancer-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .portfolio-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        
+        .portfolio-btn:hover {
+            background: var(--primary-dark);
+        }
     </style>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -263,24 +284,27 @@
                 skills: ["Clip Studio Paint", "Adobe Animate CC", "After Effects", "Premiere Pro"],
                 description: "Experinced in Animation,Storyboarding and Composition",
                 avatar: "logo.jpg",
+                portfolio: "#" // Add portfolio link here
                 // rate: "$10/hr"
             },
             {
                 id: 2,
                 name: "Zeder",
                 title: "Animator",
-                skills: ["Adobe Animate CC", "Photoshop", "Clip Studio Paint", "Krita"],
+                skills: ["Adobe Animate CC", "Clip Studio Paint", "Krita"],
                 description: "Experienced in Storyboarding,Animation and Character Design",
                 avatar: "zeder-logo.png",
+                portfolio: "#" // Add portfolio link here
                 // rate: "$10/hr"
             },
             {
                 id: 3,
                 name: "Sarthak",
                 title: "Animator",
-                skills: ["Flipaclib", "Ibispaint X"],
-                description: "Rough Animator and Illustrator (Mobile Animator)",
+                skills: ["Flipaclip", "Ibispaint X", "Sketchbook", "infinite Painter" ],
+                description: "Rough Animator and Illustrator (Mobile Animator),Good with Motions",
                 avatar: "sarthaklogo.jpg",
+                portfolio: "#" // Add portfolio link here
                 // rate: "$10/hr"
             },
             // {
@@ -315,6 +339,9 @@
                     <p>${freelancer.description}</p>
                     <div class="freelancer-skills">
                         ${freelancer.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                    </div>
+                    <div class="freelancer-actions">
+                        <button class="portfolio-btn" onclick="window.location.href='${freelancer.portfolio}'">Portfolio</button>
                     </div>
                 </div>
             `).join('');
